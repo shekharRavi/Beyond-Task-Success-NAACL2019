@@ -1,0 +1,92 @@
+{
+ "encoder": {
+   "hidden_dim": 1024,
+   "num_layers":1,
+   "dropout": 0.0,
+   "scale_to": 512,
+   "visual_features_dim":2048,
+   "conv_visual_features_dim":49
+ },
+
+ "guesser":{
+   "focalloss":false,
+   "layer_sizes":[264, 512, 512]
+ },
+
+ "qgen":{
+   "hidden_dim":512,
+   "num_layers":1,
+   "scale_visual_to":512
+ },
+ "qgen_cap":{
+   "hidden_dim":512,
+   "num_layers":1,
+   "scale_visual_to":512,
+   "visual": false
+ },
+
+ "decider":{
+    "fusion": "late",
+    "focalloss":false,
+    "arch": [512,256,64,16,2],
+    "ask_weight": 0.2,
+    "guess_weight": 0.8
+   },
+
+ "embeddings": {
+    "word_embedding_dim": 512,
+    "no_categories": 91,
+    "obj_categories_embedding_dim": 256,
+    "obj_pad_token":0
+  },
+
+  "optimizer": {
+    "lr": 0.0001,
+    "no_epochs": 100,
+    "batch_size": 64
+  },
+
+  "exp_config": {
+    "name": "test experiment",
+    "description": "experiment description",
+    "logging": false,
+    "save_models": false,
+    "save_models_path": "./bin/SL/",
+    "tb_logdir": "./logs/SL/",
+    "decider" : "decider",
+    "qgen": "qgen",
+    "seed": 1,
+    "splits": ["train", "val"]
+  },
+
+  "dataset": {
+    "new_data": false,
+    "max_src_length": 200,
+    "max_q_length" : 30,
+    "max_no_objects": 20,
+    "max_no_qs" : 10,
+    "successful_only":true,
+    "new_vocab": false,
+    "min_occ": 3
+  },
+
+  "data_paths": {
+    "image_path":"./data/GuessWhat/",
+    "train": "guesswhat.train.jsonl.gz",
+    "val": "guesswhat.valid.jsonl.gz",
+    "test":"guesswhat.test.jsonl.gz",
+    "vocab_file": "vocab.json",
+    "vgg": {
+      "image_features": "VGG_image_features1k.h5",
+      "img2id": "VGG_img_features2id1k.json",
+      "game2id": "VGG_img_features2idd1k.json",
+      "crop_features": "VGG_crops_features4096.h5",
+      "crop2id": "VGG_crops_features2id4096.json"
+    },
+   "ResNet": {
+      "image_features": "ResNet_avg_image_features.h5",
+      "img2id": "ResNet_avg_image_features2id.json"
+    }
+
+  }
+}

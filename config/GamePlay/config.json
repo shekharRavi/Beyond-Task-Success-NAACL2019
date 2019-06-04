@@ -1,0 +1,40 @@
+{
+  "optimizer": {
+    "batch_size": 128
+  },
+
+  "exp_config": {
+    "decider_enabled": false,
+    "logging": true,
+    "logdir": "./logs/GamePlay/",
+    "decider" : "decider",
+    "qgen":"qgen",
+    "seed": 1,
+    "splits": ["val", "test"]
+  },
+
+  "dataset": {
+    "new_data": false,
+    "max_src_length": 200,
+    "max_q_length" : 30,
+    "max_no_objects": 20,
+    "max_no_qs" : 10,
+    "successful_only":false,
+    "new_vocab": false,
+    "min_occ": 3
+  },
+
+  "data_paths": {
+    "image_path":"./data/GuessWhat/",
+    "catid2str": "catid2str.json",
+    "train": "guesswhat.train.jsonl.gz",
+    "val": "guesswhat.valid.jsonl.gz",
+    "test":"guesswhat.test.jsonl.gz",
+    "vocab_file": "vocab.json",
+   "ResNet": {
+      "image_features": "ResNet_avg_image_features.h5",
+      "img2id": "ResNet_avg_image_features2id.json"
+    }
+
+  }
+}

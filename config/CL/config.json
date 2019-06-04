@@ -1,0 +1,52 @@
+{
+  "optimizer": {
+    "lr": 0.0001,
+    "no_epochs": 100,
+    "batch_size": 32
+  },
+
+  "exp_config": {
+    "decider_enabled": true,
+    "logging": false,
+    "save_models": false,
+    "save_models_path": "./bin/GP/",
+    "tb_logdir": "./logs/",
+    "logdir": "./logs/GamePlay/",
+    "decider" : "decider",
+    "qgen":"qgen",
+    "seed": 1,
+    "splits": ["val", "test"]
+  },
+
+  "dataset": {
+    "new_data": false,
+    "max_src_length": 200,
+    "max_q_length" : 30,
+    "max_no_objects": 20,
+    "max_no_qs" : 10,
+    "successful_only":false,
+    "new_vocab": false,
+    "min_occ": 3
+  },
+
+  "data_paths": {
+    "image_path":"./data/GuessWhat/",
+    "catid2str": "catid2str.json",
+    "train": "guesswhat.train.jsonl.gz",
+    "val": "guesswhat.valid.jsonl.gz",
+    "test":"guesswhat.test.jsonl.gz",
+    "vocab_file": "vocab.json",
+    "vgg": {
+      "image_features": "VGG_image_features1k.h5",
+      "img2id": "VGG_img_features2id1k.json",
+      "game2id": "VGG_img_features2idd1k.json",
+      "crop_features": "VGG_crops_features4096.h5",
+      "crop2id": "VGG_crops_features2id4096.json"
+    },
+   "ResNet": {
+      "image_features": "ResNet_avg_image_features.h5",
+      "img2id": "ResNet_avg_image_features2id.json"
+    }
+
+  }
+}

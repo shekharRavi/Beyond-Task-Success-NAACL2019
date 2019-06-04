@@ -1,0 +1,78 @@
+{
+
+ "lstm": {
+   "no_hidden_encoder": 512,
+   "dropout": 0.0
+ },
+
+ "mlp": {
+   "layer_sizes": [1024, 128, 3]
+ },
+
+ "inputs": {
+   "question": true,
+   "obj_categories": true,
+   "spatial": true,
+   "visual": false,
+   "crop": false,
+   "scale_visual_to": 0,
+   "no_visual_feat": 4096,
+   "no_crop_feat": 4096
+ },
+
+ "embeddings": {
+    "no_words_feat": 300,
+    "no_category_feat": 512,
+    "no_categories": 91
+  },
+
+  "optimizer": {
+    "lr": 0.0001,
+    "no_epochs": 16,
+    "batch_size": 1024
+  },
+
+  "dataset": {
+    "max_src_length": 15,
+    "min_occ":3,
+    "new_oracle_data": true,
+    "new_vocab": false,
+    "successful_only": true,
+    "history": false
+  },
+
+  "exp_config": {
+    "name": "Oracle",
+    "description": "experiment description",
+    "logging": true,
+    "save_models": true,
+    "save_models_path": "./bin/Oracle/",
+    "tb_logdir": "./logs/",
+    "seed": 1,
+    "splits": ["train", "val"]
+  },
+
+  "data_paths": {
+
+    "train_file": "guesswhat.train.jsonl.gz",
+    "val_file": "guesswhat.valid.jsonl.gz",
+    "test_file":"guesswhat.test.jsonl.gz",
+    "vocab_file": "vocab.json",
+
+    "oracle_bin_file": "./bin/Oracle/oracle",
+
+    "vgg": {
+      "image_features": "VGG_image_features4096.h5",
+      "img2id": "VGG_img_features2id4096.json",
+      "crop_features": "VGG_crops_features4096.h5",
+      "crop2id": "VGG_crops_features2id4096.json"
+    },
+
+    "rss": {
+      "image_features": "ResNet_image_features.h5",
+      "img2id": "ResNet_img_features2id.json",
+      "crop_features": "ResNetcrop_features.h5",
+      "crop2id": "ResNetcrop_features2id.json"
+    }
+  }
+}

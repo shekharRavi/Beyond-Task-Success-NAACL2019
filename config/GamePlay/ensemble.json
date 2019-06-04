@@ -1,0 +1,46 @@
+{
+  "encoder": {
+    "hidden_dim": 1024,
+    "num_layers":1,
+    "dropout": 0.0,
+    "scale_to": 512,
+    "visual_features_dim":2048,
+    "conv_visual_features_dim":49
+  },
+
+  "guesser":{
+    "layer_sizes":[264, 512, 512]
+  },
+
+  "qgen":{
+    "hidden_dim":512,
+    "num_layers":1,
+    "scale_visual_to":512
+  },
+  "qgen_cap":{
+    "hidden_dim":512,
+    "num_layers":1,
+    "scale_visual_to":512,
+    "visual": false
+  },
+
+  "decider":{
+     "fusion": "late",
+     "focalloss":false,
+     "arch": [512,256,64,16,2],
+     "ask_weight": 0.2,
+     "guess_weight": 0.8
+    },
+
+  "ensemble":{
+    "bin_file": "./bin/SL/SL"
+  },
+
+  "embeddings": {
+     "word_embedding_dim": 512,
+     "no_categories": 91,
+     "obj_categories_embedding_dim": 256,
+     "obj_pad_token":0
+   }
+
+}

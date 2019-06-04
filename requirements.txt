@@ -1,0 +1,10 @@
+h5py
+nltk
+numpy
+argparse
+datetime
+multiprocessing
+time
+shutil
+json
+tensorboardX
