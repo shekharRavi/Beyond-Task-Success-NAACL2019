@@ -7,7 +7,7 @@ import copy
 import numpy as np
 import torch
 from nltk.tokenize import TweetTokenizer
-from utils.image_utils import get_spatial_feat_v2
+from utils.image_utils import get_spatial_feat
 from torch.utils.data import Dataset
 
 
@@ -45,14 +45,15 @@ class OracleDataset(Dataset):
         if self.load_crops:
             self.cf = np.asarray(h5py.File(self.visual_feat_crop_file, 'r')[self.hdf5_crop_feat])
 
+            with open(os.path.join(data_dir, visual_feat_crop_mapping_file), 'r') as file_c:
+                self.visual_feat_crop_mapping_file = json.load(file_c)
+            self.visual_feat_crop_mapping_file = self.visual_feat_crop_mapping_file['crops_features2id']
+
         with open(os.path.join(data_dir, visual_feat_mapping_file), 'r') as file_v:
             self.visual_feat_mapping_file = json.load(file_v)
 
-        with open(os.path.join(data_dir, visual_feat_crop_mapping_file), 'r') as file_c:
-            self.visual_feat_crop_mapping_file = json.load(file_c)
 
         self.visual_feat_mapping_file = self.visual_feat_mapping_file['image_features2id']
-        self.visual_feat_crop_mapping_file  = self.visual_feat_crop_mapping_file['crops_features2id']
 
         # load or create new vocab
         with open(os.path.join(data_dir, self.vocab_file_name), 'r') as file:
